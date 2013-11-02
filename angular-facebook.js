@@ -8,6 +8,11 @@ module.provider('FB', function() {
   var _asyncLoading = false;
   var _scriptUrl = '//connect.facebook.net/en_US/all.js';
   var _scriptId = 'facebook-jssdk';
+  var _appId = null;
+  var _channelUrl = 'app/channel.html';
+  var _status = true;
+  var _cookie = true;
+  var _xfbml = true;
 
   this.asyncLoading = function(config) {
     _asyncLoading = config || _asyncLoading;
@@ -42,6 +47,28 @@ module.provider('FB', function() {
     scriptTag.onload = callback;
     var s = $document.getElementsByTagName('body')[0];
         s.appendChild(scriptTag);
+  }
+
+  this.$get = function($q, $rootScope, $window) {
+    var deferred = $q.defer();
+    var _FB = $window.FB;
+    deferred.isPromise = true;
+    _FB.isPromise = false;
+
+    if (_asyncLoading) {
+      // Load client in the browser
+      var onScriptLoad = function(callback) {
+        successFN();
+        $timeout(function() {
+          deferred.resolve($window.FB);
+        });
+      };
+      createScript($document[0], onScriptLoad);
+    } else {
+      successFN();
+    }
+
+    return (_asyncLoading) ? deferred.promise: _FB;
   }
 });
 
