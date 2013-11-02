@@ -2,7 +2,6 @@
 'use strict';
 
 /* angular Facebook */
-module
 
 module.provider('FB', function() {
   var _asyncLoading = false;
@@ -30,10 +29,35 @@ module.provider('FB', function() {
     return this;
   };
 
+  this.appId = function(id) {
+    _appId = id || _appId;
+    return this;
+  };
+
+  this.appId = function(url) {
+    _channelUrl = url || _channelUrl;
+    return this;
+  };
+
+  this.appId = function(config) {
+    _status = config && _status;
+    return this;
+  };
+
+  this.appId = function(config) {
+    _cookie = config && _cookie;
+    return this;
+  };
+
+  this.appId = function(config) {
+    _xfbml = config && _xfbml;
+    return this;
+  };
+
   // Create a script tag with moment as the source
   // and call our onScriptLoad callback when it
   // has been loaded
-  function createScript($document, callback) {
+  function createScript($document, callback, success) {
     var scriptTag = $document.createElement('script');
     scriptTag.type = 'text/javascript';
     scriptTag.async = true;
@@ -52,6 +76,39 @@ module.provider('FB', function() {
   this.$get = function($q, $rootScope, $window) {
     var deferred = $q.defer();
     var _FB = $window.FB;
+
+    function successFN() {
+      $window.fbAsyncInit = function() {
+        // Executed when the SDK is loaded
+        FB.init({
+          /*
+           The app id of the web app;
+           To register a new app visit Facebook App Dashboard
+           ( https://developers.facebook.com/apps/ )
+          */
+          appId: _appId,
+          /*
+           Adding a Channel File improves the performance
+           of the javascript SDK, by addressing issues
+           with cross-domain communication in certain browsers.
+          */
+          channelUrl: _channelUrl,
+          /*
+           Set if you want to check the authentication status
+           at the start up of the app
+          */
+          status: _status,
+          /*
+           Enable cookies to allow the server to access
+           the session
+          */
+          cookie: _cookie,
+          /* Parse XFBML */
+          xfbml: _xfbml
+        });
+      };
+    }
+
     deferred.isPromise = true;
     _FB.isPromise = false;
 
