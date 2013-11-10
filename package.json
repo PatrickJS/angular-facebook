@@ -1,8 +1,8 @@
 {
   "name": "angular-facebook",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "angular-facebook.js",
-  "description": "A Raven.js / Sentry wrapper for Angular.js ",
+  "description": "Facebook SDK for Angular.js ",
   "homepage": "https://github.com/gdi2290/angular-facebook",
   "bugs": "https://github.com/gdi2290/angular-facebook/issues",
   "author": {
