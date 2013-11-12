@@ -1,5 +1,5 @@
 {
-  "name": "angular-facebook",
+  "name": "angular-facebook-sdk",
   "version": "0.0.2",
   "main": "angular-facebook.js",
   "ignore": [
