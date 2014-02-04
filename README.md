@@ -10,7 +10,7 @@ You can download angular-facebook by:
 
 
 ````html
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
 <script src="app/bower_components/angular-facebook-sdk/angular-facebook-sdk.js"></script>
 <script>
   angular.module('YOUR_APP', [
