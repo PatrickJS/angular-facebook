@@ -129,4 +129,4 @@ module.provider('FB', function() {
   }
 });
 
-}(angular.module('ngFacebook', []), angular, window);
+})(angular.module('ngFacebook', []), angular, window);
